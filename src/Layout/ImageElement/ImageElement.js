@@ -3,8 +3,8 @@ import './ImageElement.scss';
 
 const ImageElement = ({ src }) => {
     return (
-        <div>
-            <img src={src} className="image" alt="error 2137" />
+        <div className="image-container">
+            <img src={src} className="image-container__image" alt="error 2137" />
         </div>
     );
 };
