@@ -1,29 +1,24 @@
 import React from 'react';
 import axios from 'axios';
-import ImageElement from './ImageElement/ImageElement';
-import Disclaimer from './Disclaimer/Disclaimer';
-import Source from './Source/Source';
+import RandomImage from './RandomImage/RandomImage';
+import Navbar from './Navbar/Navbar';
+import Favorites from './Favorites/FavoritesContainer';
+import { Route } from 'react-router-dom';
 import './Layout.scss';
 
 const Layout = () => {
     const [src, setSrc] = React.useState([]);
     const [position, setPosition] = React.useState(0);
-    const [favImages, setFavImages] = React.useState([]);
-
-    React.useEffect(() => {
-        const favourites = [];
-        axios.get('https://imgurgenerator.firebaseio.com/images.json').then(response =>
-            Object.keys(response.data).forEach(element => {
-                favourites.push(response.data[element].image);
-            })
-        );
-        setFavImages(favourites);
-    }, []);
+    const current = src.length - 1 - position;
 
     const generateImage = () => {
-        const imageId = Math.random()
-            .toString(36)
-            .substr(2, 5);
+        const imageId = [
+            Math.random()
+                .toString(36)
+                .substr(2, 5),
+        ]
+            .map(element => (Math.random() > 0.5 ? element : element.toUpperCase()))
+            .join('');
 
         const image = new Image();
         image.src = `https://i.imgur.com/${imageId}.jpg`;
@@ -52,7 +47,7 @@ const Layout = () => {
                 })
                 .then(() => {
                     src[src.length - 1 - position].fav = true;
-                    setFavImages([...favImages, src[src.length - 1 - position].image]);
+                    // setFavImages([...favImages, src[src.length - 1 - position].image]);
                 })
 
                 .catch(error => console.log(error));
@@ -60,18 +55,24 @@ const Layout = () => {
 
     return (
         <div className="layout">
-            <Disclaimer />
-            <button onClick={generateImage}>Generate</button>
-            {src.length > 0 ? (
-                <div>
-                    <ImageElement src={src[src.length - 1 - position].image} />
-                    <Source src={src[src.length - 1 - position].image} />
-                </div>
-            ) : null}
-            <button onClick={back}>Back</button>
-            <button onClick={forward}>Forward</button>
-            <button onClick={setFav}>Set fav</button>
-            {favImages ? favImages.map(image => <ImageElement src={image} key={image} />) : null}
+            <Navbar />
+
+            <Route
+                path="/"
+                exact
+                render={() => (
+                    <RandomImage
+                        src={src}
+                        current={current}
+                        back={back}
+                        forward={forward}
+                        setFav={setFav}
+                        generateImage={generateImage}
+                    />
+                )}
+            />
+            {/* favImages={favImages} */}
+            <Route path="/favorites" render={() => <Favorites />} />
         </div>
     );
 };
