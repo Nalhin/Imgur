@@ -1,6 +1,10 @@
-import {INIT_GET_FAVORITES} from './actionTypes';
+import * as actionTypes from './actionTypes';
 
-export const getFavorites = ()=> ({
-    type: INIT_GET_FAVORITES,
+export const getFavorites = () => ({
+    type: actionTypes.GET_FAVORITES_REQUESTED,
+});
 
+export const deleteFavorites = id => ({
+    type: actionTypes.DELETE_FAVORITES_REQUESTED,
+    id: id,
 });

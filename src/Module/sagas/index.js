@@ -1,10 +1,12 @@
-import {takeEvery} from 'redux-saga/effects';
+import { takeEvery, all } from 'redux-saga/effects';
 
-import {getFavoritesSaga} from './favorites';
-import {INIT_GET_FAVORITES} from '../actions/actionTypes'
+import { getFavoritesSaga, deleteFavoritesSaga } from './favorites';
+import * as actionTypes from '../actions/actionTypes';
 
 
-export function* watchGetFavorites(){
-
-    yield takeEvery(INIT_GET_FAVORITES,getFavoritesSaga);
+export function* rootSaga() {
+    yield all([
+        yield takeEvery(actionTypes.GET_FAVORITES_REQUESTED, getFavoritesSaga),
+        yield takeEvery(actionTypes.DELETE_FAVORITES_REQUESTED, deleteFavoritesSaga),
+    ]);
 }

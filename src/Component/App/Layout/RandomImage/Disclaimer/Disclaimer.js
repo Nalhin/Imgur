@@ -3,8 +3,8 @@ import './Disclaimer.scss';
 
 const Disclaimer = () => {
     return (
-        <div>
-            <h1>Some images might be NSFW</h1>
+        <div className="disclaimer">
+            <h1 className="disclaimer__text">Some images might be NSFW</h1>
         </div>
     );
 };

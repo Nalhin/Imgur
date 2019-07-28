@@ -1,0 +1,15 @@
+.favorite-image{
+  
+  display:flex;
+  position:relative;
+  margin:10px auto;
+  &__delete-button{
+
+    position:absolute;
+    right:10%;
+    color:white;
+    font-size:1.2em;
+    background:red;
+    border:1px black solid;
+  }
+}
