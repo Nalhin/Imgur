@@ -18,8 +18,6 @@ export const fetchGetFavorites = () => {
 export const fetchDeleteFavorites = id => {
     return axios
         .delete(`${url}/${id}.json`)
-        .then(response => ({
-            response,
-        }))
-        .catch(error => ({ error }));
+        .then(response => response)
+        .catch(error => error);
 };
