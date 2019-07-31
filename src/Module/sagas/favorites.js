@@ -1,18 +1,10 @@
-import { put } from 'redux-saga/effects';
-import axios from 'axios';
+import { put, call } from 'redux-saga/effects';
 import * as actionTypes from '../actions/actionTypes';
+import * as Api from '../api';
 
-const url = 'https://imgurgenerator.firebaseio.com/images';
-
-export function* getFavoritesSaga(action) {
+export function* getFavoritesSaga() {
     try {
-        const favorites = [];
-        const response = yield axios.get(`${url}.json`);
-
-        Object.keys(response.data).forEach(element => {
-            favorites.push({ image: response.data[element].image, id: element });
-        });
-
+        const favorites = yield call(Api.fetchGetFavorites);
         yield put({ type: actionTypes.GET_FAVORITES_SUCCEEDED, favorites });
     } catch (error) {
         yield put({ type: actionTypes.GET_FAVORITES_FAILED, error });
@@ -21,12 +13,9 @@ export function* getFavoritesSaga(action) {
 
 export function* deleteFavoritesSaga(action) {
     try {
-        console.log(action);
-        const id = action.id;
-        yield axios.delete(`${url}/${id}.json`);
-        yield put({ type: actionTypes.DELETE_FAVORITES_SUCCEEDED, id });
+        yield call(Api.fetchDeleteFavorites, action.id);
+        yield put({ type: actionTypes.DELETE_FAVORITES_SUCCEEDED, id: action.id });
     } catch (error) {
-        console.log(error);
         yield put({ type: actionTypes.DELETE_FAVORITES_FAILED, error });
     }
 }

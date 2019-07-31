@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Favorites from './Favorites';
-import { getFavorites, deleteFavorites } from '../../../../Module/actions/favorites';
+import { getFavorites, deleteFavorites } from '../../../Module/actions/favorites';
 
 const mapStateToProps = state => {
     return { favorites: state.favorites };
@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => {
         getFavorites: () => {
             dispatch(getFavorites());
         },
-        deleteFavorites: (image) => {
+        deleteFavorites: image => {
             dispatch(deleteFavorites(image));
         },
     };
