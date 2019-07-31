@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { MdFavorite } from 'react-icons/md';
+import classNames from 'classnames';
 
 import Disclaimer from './Disclaimer/Disclaimer';
 import CenterImage from './CenterImage/CenterImage';
@@ -17,8 +19,8 @@ const generateId = (size = 5) => {
 
 const RandomImage = () => {
     const [src, setSrc] = React.useState([]);
-    const [position, setPosition] = React.useState(0);
-    const current = src.length - 1 - position;
+    const [position, setPosition] = React.useState(-1);
+    const srcSize = src.length - 1;
 
     const generateImage = () => {
         const imageId = generateId();
@@ -26,8 +28,11 @@ const RandomImage = () => {
 
         fetch(url) //check if image exists on server
             .then(response => {
-                if (response.url === url) setSrc([...src, { image: url, fav: false }]);
-                else generateImage();
+                console.log(response);
+                if (response.url === url) {
+                    setSrc([...src, { image: url, fav: false }]);
+                    setPosition(position + 1);
+                } else generateImage();
             })
             .catch(error => {
                 console.log(error);
@@ -35,42 +40,51 @@ const RandomImage = () => {
     };
 
     const back = () => {
-        if (src.length - position > 1) setPosition(position + 1);
-    };
-
-    const forward = () => {
         if (position > 0) setPosition(position - 1);
     };
 
+    const forward = () => {
+        if (position < srcSize) setPosition(position + 1);
+    };
+
     const setFav = () => {
-        if (!src[src.length - 1 - position].fav)
+        if (!src[position].fav)
             axios
                 .post('https://imgurgenerator.firebaseio.com/images.json', {
-                    image: src[src.length - 1 - position].image,
+                    image: src[position].image,
                 })
                 .then(() => {
-                    src[src.length - 1 - position].fav = true;
+                    src[position].fav = true;
                 })
                 .catch(error => console.log(error));
     };
 
+    const favClass = classNames({
+        'random-image-container__favorite': true,
+        'random-image-container__favorite--is-fav': position >= 0 && src[position].fav,
+    });
+
     return (
         <div className="random-image-container">
             <Disclaimer />
-            <button className="random-image-container__generate-button" onClick={generateImage}>Generate</button>
-
-            {current >= 0 ? (
+            <button className="random-image-container__generate-button" onClick={generateImage}>
+                Generate
+            </button>
+            {position >= 0 && (
                 <React.Fragment>
                     <CenterImage
                         back={back}
                         forward={forward}
-                        setFav={setFav}
-                        src={src[current].image}
-
+                        src={src[position].image}
+                        showBack={position > 0}
+                        showForward={position < srcSize}
                     />
-                    <Source src={src[current].image} />
+
+                    <MdFavorite onClick={setFav} className={favClass} />
+
+                    <Source src={src[position].image} />
                 </React.Fragment>
-            ) : null}
+            )}
         </div>
     );
 };

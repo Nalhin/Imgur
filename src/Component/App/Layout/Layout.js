@@ -9,8 +9,8 @@ const Layout = () => {
     return (
         <div className="layout">
             <Navbar />
-            <Route path="/" exact render={() => <RandomImage />} />
-            <Route path="/favorites" render={() => <Favorites />} />
+            <Route path="/" exact component={<RandomImage />} />
+            <Route path="/favorites" component={<Favorites />} />
         </div>
     );
 };

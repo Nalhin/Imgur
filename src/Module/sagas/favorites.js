@@ -2,7 +2,7 @@ import { put } from 'redux-saga/effects';
 import axios from 'axios';
 import * as actionTypes from '../actions/actionTypes';
 
-const url='https://imgurgenerator.firebaseio.com/images'
+const url = 'https://imgurgenerator.firebaseio.com/images';
 
 export function* getFavoritesSaga(action) {
     try {
@@ -21,12 +21,12 @@ export function* getFavoritesSaga(action) {
 
 export function* deleteFavoritesSaga(action) {
     try {
-        console.log(action)
-        const id=action.id;
+        console.log(action);
+        const id = action.id;
         yield axios.delete(`${url}/${id}.json`);
-        yield put({ type: actionTypes.DELETE_FAVORITES_SUCCEEDED, id});
+        yield put({ type: actionTypes.DELETE_FAVORITES_SUCCEEDED, id });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         yield put({ type: actionTypes.DELETE_FAVORITES_FAILED, error });
     }
 }

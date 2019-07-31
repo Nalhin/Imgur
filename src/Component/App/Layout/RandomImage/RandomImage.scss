@@ -1,17 +1,38 @@
-.random-image-container{
- // display:flex;
-  text-align:center;
-  &__generate-button{
-    background:aqua;
-    padding:10px 10px;
-    border-radius:5px;
-    margin:10px auto;
-    font-weight:bold;
-    outline:none;
-   cursor:pointer;
-    &:hover{
-      background:aquamarine;
+@import "./../../../../globalStyleVariables.scss";
+
+.random-image-container {
+  text-align: center;
+
+  &__generate-button {
+    background: $primary;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin: 10px auto;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    color: $primary-text;
+
+    &:hover {
+      background: $primary-variant;
     }
   }
 
+  &__favorite {
+    margin: 10px auto;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 30px;
+    color: $primary-text;
+    background: $primary;
+
+    &--is-fav {
+      color: red;
+    }
+
+    &:hover {
+      background: $primary-variant;
+    }
+  }
 }
