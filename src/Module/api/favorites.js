@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const url = 'https://imgurgenerator.firebaseio.com/images';
+import { url } from './url';
 
 export const fetchGetFavorites = () => {
     return axios
@@ -8,7 +7,7 @@ export const fetchGetFavorites = () => {
         .then(response => {
             const favorites = [];
             Object.keys(response.data).forEach(element => {
-                favorites.push({ image: response.data[element].image, id: element });
+                favorites.push({ src: response.data[element].image, id: element });
             });
             return favorites;
         })

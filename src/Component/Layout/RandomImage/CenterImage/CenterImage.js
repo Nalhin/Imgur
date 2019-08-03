@@ -4,11 +4,11 @@ import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import ImageElement from '../../ImageElement/ImageElement';
 import './CenterImage.scss';
 
-const CenterImage = ({ src, back, forward,  showBack, showForward }) => {
+const CenterImage = ({ src, back, forward, showBack, showForward }) => {
     return (
         <div className="image-container">
             <ImageElement src={src} />
-           
+
             {showBack ? (
                 <MdNavigateBefore
                     className="image-container__left image-container__arrow"
@@ -21,7 +21,6 @@ const CenterImage = ({ src, back, forward,  showBack, showForward }) => {
                     onClick={forward}
                 />
             ) : null}
-           
         </div>
     );
 };

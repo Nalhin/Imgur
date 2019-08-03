@@ -1,5 +1,5 @@
 import React from 'react';
-import RandomImage from './RandomImage/RandomImage';
+import RandomImage from './RandomImage/RandomImageContainer';
 import Navbar from './Navbar/Navbar';
 import Favorites from './Favorites/FavoritesContainer';
 import { Route } from 'react-router-dom';

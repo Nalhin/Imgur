@@ -1,5 +1,5 @@
 import React from 'react';
-import {MdClose} from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 
 import ImageElement from '../../ImageElement/ImageElement';
 import './FavoriteImage.scss';
@@ -10,10 +10,9 @@ const FavoriteImage = ({ image, deleteFavorites }) => {
     }, [image, deleteFavorites]);
 
     return (
-        <div className="favorite-image" >
-         
-            <MdClose className="favorite-image__delete-button" onClick={deleteFav}></MdClose>
-            <ImageElement src={image.image} />
+        <div className="favorite-image">
+            <MdClose className="favorite-image__delete-button" onClick={deleteFav} />
+            <ImageElement src={image.src} />
         </div>
     );
 };
