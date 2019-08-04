@@ -11,7 +11,7 @@ export const fetchGetFavorites = () => {
             });
             return favorites;
         })
-        .catch(error => ({ error }));
+        .catch(error => error);
 };
 
 export const fetchDeleteFavorites = id => {

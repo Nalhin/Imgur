@@ -29,9 +29,8 @@ export function* getRandomSaga() {
 
 export function* getRandomSetFavSaga(action) {
     try {
-        const id = yield call(Api.fetchSetFavRandom, action.image);
-        console.log(id);
-        yield put({ type: actionTypes.GET_RANDOM_SET_FAV_SUCCEEDED, id: action.id });
+        const id = yield call(Api.fetchSetFavRandom, action.src);
+        yield put({ type: actionTypes.GET_RANDOM_SET_FAV_SUCCEEDED, id: id, src: action.src });
     } catch (error) {
         yield put({ type: actionTypes.GET_RANDOM_SET_FAV_FAILED, error });
     }

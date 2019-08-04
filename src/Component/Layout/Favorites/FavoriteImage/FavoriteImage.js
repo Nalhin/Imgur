@@ -9,10 +9,16 @@ const FavoriteImage = ({ image, deleteFavorites }) => {
         deleteFavorites(image.id);
     }, [image, deleteFavorites]);
 
+    const [isLoaded, setIsLoaded] = React.useState(false);
+
+    const load = () => {
+        setIsLoaded(true);
+    };
+
     return (
         <div className="favorite-image">
-            <MdClose className="favorite-image__delete-button" onClick={deleteFav} />
-            <ImageElement src={image.src} />
+            {isLoaded && <MdClose className="favorite-image__delete-button" onClick={deleteFav} />}
+            <ImageElement onLoad={load} src={image.src} />
         </div>
     );
 };

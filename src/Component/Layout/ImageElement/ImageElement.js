@@ -1,13 +1,11 @@
 import React from 'react';
 import './ImageElement.scss';
 
-const ImageElement = ({ src }) => {
+const ImageElement = ({ src, onLoad }) => {
     return (
-        // <div className="image-container">
         <React.Fragment>
-            <img src={src} className="image-container__image" alt="error" />
+            <img src={src} onLoad={onLoad} className="image-container__image" alt="error" />
         </React.Fragment>
-        // </div>
     );
 };
 

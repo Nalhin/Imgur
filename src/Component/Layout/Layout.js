@@ -1,8 +1,8 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import RandomImage from './RandomImage/RandomImageContainer';
 import Navbar from './Navbar/Navbar';
 import Favorites from './Favorites/FavoritesContainer';
-import { Route } from 'react-router-dom';
 import './Layout.scss';
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
         <div className="layout">
             <Navbar />
             <Route path="/" exact component={RandomImage} />
-            <Route path="/favorites" component={Favorites} />
+            <Route path="/favorites" exact component={Favorites} />
         </div>
     );
 };

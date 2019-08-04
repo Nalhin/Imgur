@@ -2,27 +2,24 @@ import axios from 'axios';
 import { url } from './url';
 
 export const fetchGetRandom = imageId => {
-    const url = `https://i.imgur.com/${imageId}.jpg`;
-    return fetch(url) //check if image exists on server
+    const fetchUrl = `https://i.imgur.com/${imageId}.jpg`;
+    return fetch(fetchUrl) //check if image exists on server
         .then(response => {
-            if (response.url === url) {
-                return url;
+            if (response.url === fetchUrl) {
+                return fetchUrl;
             }
             return null;
         })
-        .catch(error => {
-            console.log(error);
-        });
+        .catch(error => error);
 };
 
-export const fetchSetFavRandom = image => {
-    axios
-        .post(url, {
-            image: image.src,
+export const fetchSetFavRandom = src => {
+    return axios
+        .post(`${url}.json`, {
+            image: src,
         })
         .then(response => {
-            console.log(response);
-            return response;
+            return response.data.name;
         })
-        .catch(error => console.log(error));
+        .catch(error => error);
 };

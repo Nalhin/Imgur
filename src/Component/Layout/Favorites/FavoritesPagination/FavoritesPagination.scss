@@ -1,0 +1,26 @@
+@import "../../../../globalStyleVariables.scss";
+.favorites {
+  &__button-container {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 10px;
+    justify-content: space-around;
+  }
+  &__page-button {
+    margin: 5px 5px;
+    background: $primary;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    color: $primary-text;
+
+    &:hover {
+      background: $primary-variant;
+    }
+    &--active {
+      background: $primary-variant;
+    }
+  }
+}
