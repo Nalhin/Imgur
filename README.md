@@ -20,11 +20,7 @@ cd imgur-generator
 npm install
 ```
 
-<<<<<<< HEAD
-# Start
-=======
 #  Start
->>>>>>> 49e7977bf4c3c5682be8f0fa7fe327e485348b90
 
 ```bash
 npm run start
@@ -34,31 +30,6 @@ npm run start
 
 Imgur Generator generates 5 character hashes and keeps sending requests until a valid image is found. Subsequently, the image is displayed to the user. This app could be used to generate 6 or 7 character hashes, however with so many dead links it would take forever to find a valid one.
 
-<<<<<<< HEAD
-# Stack
-
-React, React Router, Redux, Redux Saga, Sass, Firebase.
-
-# What I learned
-
-#### React Router basics.
-
-#### Firebase.
-
-#### Redux.
-
-#### Redux Saga.
-
-#### Asynchronous requests with Redux.
-
-#### Scss.
-
-#### BEM.
-
-## License
-
-=======
-
 # Stack
 
 React, React Router, Redux, Redux Saga, Sass, Firebase.
@@ -76,5 +47,4 @@ React, React Router, Redux, Redux Saga, Sass, Firebase.
 
 ## License
 
->>>>>>> 49e7977bf4c3c5682be8f0fa7fe327e485348b90
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
