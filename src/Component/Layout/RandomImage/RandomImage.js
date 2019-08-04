@@ -17,17 +17,16 @@ const RandomImage = ({
     deleteFav,
 }) => {
     const srcSize = random.length - 1;
-
     const showBack = position > 0;
     const showForward = position < srcSize;
 
     const back = React.useCallback(() => {
         if (showBack) decrementPosition();
-    }, [showBack]);
+    }, [showBack, decrementPosition]);
 
     const forward = React.useCallback(() => {
         if (showForward) incrementPosition();
-    }, [showForward]);
+    }, [showForward, incrementPosition]);
 
     const setFavorite = React.useCallback(() => {
         if (random[position].id) deleteFav(random[position].id);
