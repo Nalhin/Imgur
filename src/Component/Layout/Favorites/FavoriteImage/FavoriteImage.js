@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdClose } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 import ImageElement from '../../ImageElement/ImageElement';
 import './FavoriteImage.scss';
@@ -21,6 +22,14 @@ const FavoriteImage = ({ image, deleteFavorites }) => {
             <ImageElement onLoad={load} src={image.src} />
         </div>
     );
+};
+
+FavoriteImage.propTypes = {
+    image: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+    }),
+    deleteFavorites: PropTypes.func.isRequired,
 };
 
 export default FavoriteImage;

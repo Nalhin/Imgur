@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import FavoriteImage from './FavoriteImage/FavoriteImage';
 import './Favorites.scss';
@@ -37,7 +38,6 @@ const Favorites = ({ favorites, getFavorites, deleteFavorites }) => {
     return (
         <div className="favorites">
             <FavoritesPagination pages={pages} currentPage={currentPage} setPage={setPage} />
-
             {splitFav &&
                 splitFav.map(image => (
                     <FavoriteImage image={image} deleteFavorites={deleteFavorites} key={image.id} />
@@ -45,6 +45,17 @@ const Favorites = ({ favorites, getFavorites, deleteFavorites }) => {
             <FavoritesPagination pages={pages} currentPage={currentPage} setPage={setPage} />
         </div>
     );
+};
+
+Favorites.propTypes = {
+    favorites: PropTypes.arrayOf(
+        PropTypes.shape({
+            src: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
+        })
+    ),
+    getFavorites: PropTypes.func.isRequired,
+    deleteFavorites: PropTypes.func.isRequired,
 };
 
 export default Favorites;

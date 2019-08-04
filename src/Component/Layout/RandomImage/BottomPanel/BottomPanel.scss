@@ -1,0 +1,40 @@
+@import "../../../../globalStyleVariables.scss";
+.random-image-container {
+  &__bottom-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "left center right";
+  }
+  &__arrow {
+    color: $primary;
+    font-size: 60px;
+    cursor: pointer;
+    &:hover {
+      color: $primary-variant;
+    }
+    &--left {
+      grid-area: left;
+      margin: auto auto auto 0;
+    }
+    &--right {
+      grid-area: right;
+      margin: auto 0 auto auto;
+    }
+  }
+  &__favorite {
+    grid-area: center;
+    margin: 10px auto;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 30px;
+    color: $primary-text;
+    background: $primary;
+    &--is-fav {
+      color: red;
+    }
+    &:hover {
+      background: $primary-variant;
+    }
+  }
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './FavoritesPagination.scss';
 
 const FavoritesPagination = ({ pages, currentPage, setPage }) => {
@@ -22,4 +24,11 @@ const FavoritesPagination = ({ pages, currentPage, setPage }) => {
         )
     );
 };
+
+FavoritesPagination.propTypes = {
+    pages: PropTypes.arrayOf(PropTypes.number.isRequired),
+    currentPage: PropTypes.number.isRequired,
+    setPage: PropTypes.func.isRequired,
+};
+
 export default FavoritesPagination;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { MdFavorite } from 'react-icons/md';
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Disclaimer from './Disclaimer/Disclaimer';
-import CenterImage from './CenterImage/CenterImage';
 import Source from './Source/Source';
+import ImageElement from '../ImageElement/ImageElement';
 import './RandomImage.scss';
+import BottomPanel from './BottomPanel/BottomPanel';
 
 const RandomImage = ({
     position,
@@ -17,23 +17,23 @@ const RandomImage = ({
     deleteFav,
 }) => {
     const srcSize = random.length - 1;
-    const back = () => {
-        if (position > 0) decrementPosition();
-    };
 
-    const forward = () => {
-        if (position < srcSize) incrementPosition();
-    };
+    const showBack = position > 0;
+    const showForward = position < srcSize;
+
+    const back = React.useCallback(() => {
+        if (showBack) decrementPosition();
+    }, [showBack]);
+
+    const forward = React.useCallback(() => {
+        if (showForward) incrementPosition();
+    }, [showForward]);
 
     const setFavorite = React.useCallback(() => {
         if (random[position].id) deleteFav(random[position].id);
         else setFav(random[position].src);
     }, [position, setFav, random, deleteFav]);
 
-    const favClass = classNames({
-        'random-image-container__favorite': true,
-        'random-image-container__favorite--is-fav': position >= 0 && random[position].id,
-    });
     return (
         <div className="random-image-container">
             <button className="random-image-container__generate-button" onClick={getRandom}>
@@ -41,22 +41,36 @@ const RandomImage = ({
             </button>
             {position >= 0 && (
                 <React.Fragment>
-                    <CenterImage
+                    <ImageElement src={random[position].src} />
+                    <BottomPanel
                         back={back}
                         forward={forward}
-                        src={random[position].src}
-                        showBack={position > 0}
-                        showForward={position < srcSize}
+                        id={random[position].id}
+                        showBack={showBack}
+                        showForward={showForward}
+                        setFavorite={setFavorite}
                     />
-
-                    <MdFavorite onClick={setFavorite} className={favClass} />
-
                     <Source src={random[position].image} />
                 </React.Fragment>
             )}
             <Disclaimer />
         </div>
     );
+};
+
+RandomImage.propTypes = {
+    position: PropTypes.number.isRequired,
+    random: PropTypes.arrayOf(
+        PropTypes.shape({
+            src: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
+        })
+    ),
+    getRandom: PropTypes.func.isRequired,
+    incrementPosition: PropTypes.func.isRequired,
+    decrementPosition: PropTypes.func.isRequired,
+    setFav: PropTypes.func.isRequired,
+    deleteFav: PropTypes.func.isRequired,
 };
 
 export default RandomImage;

@@ -17,22 +17,4 @@
       background: $primary-variant;
     }
   }
-
-  &__favorite {
-    margin: 10px auto;
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 30px;
-    color: $primary-text;
-    background: $primary;
-
-    &--is-fav {
-      color: red;
-    }
-
-    &:hover {
-      background: $primary-variant;
-    }
-  }
 }
