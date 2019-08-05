@@ -16,7 +16,7 @@ export function* deleteFavoritesSaga(action) {
         yield call(Api.fetchDeleteFavorites, action.id);
         yield all([
             put({ type: actionTypes.DELETE_FAVORITES_SUCCEEDED, id: action.id }),
-            put({ type: actionTypes.GET_RANDOM_DELETE_FAV_SUCCEEDED, id: action.id }),
+            put({ type: actionTypes.DELETE_FAV_RANDOM_SUCCEEDED, id: action.id }),
         ]);
     } catch (error) {
         yield put({ type: actionTypes.DELETE_FAVORITES_FAILED, error });

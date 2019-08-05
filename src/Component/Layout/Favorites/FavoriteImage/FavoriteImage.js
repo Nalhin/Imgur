@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import ImageElement from '../../ImageElement/ImageElement';
 import './FavoriteImage.scss';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 
 const FavoriteImage = ({ image, deleteFavorites }) => {
     const deleteFav = React.useCallback(() => {
@@ -18,8 +19,12 @@ const FavoriteImage = ({ image, deleteFavorites }) => {
 
     return (
         <div className="favorite-image">
-            {isLoaded && <MdClose className="favorite-image__delete-button" onClick={deleteFav} />}
-            <ImageElement onLoad={load} src={image.src} />
+            <LoadingSpinner isLoading={!isLoaded}>
+                {isLoaded && (
+                    <MdClose className="favorite-image__delete-button" onClick={deleteFav} />
+                )}
+                <ImageElement onLoad={load} src={image.src} />
+            </LoadingSpinner>
         </div>
     );
 };

@@ -1,10 +1,11 @@
 import * as actionTypes from './actionTypes';
 
-export const getRandom = () => ({
+export const getRandom = position => ({
     type: actionTypes.GET_RANDOM_REQUESTED,
+    position,
 });
 
 export const getRandomSetFav = src => ({
-    type: actionTypes.GET_RANDOM_SET_FAV_REQUESTED,
+    type: actionTypes.SET_FAV_RANDOM_REQUESTED,
     src,
 });

@@ -6,13 +6,13 @@ import { incrementPosition, decrementPosition } from '../../../Module/actions/po
 import { deleteFavorites } from '../../../Module/actions/favorites';
 
 const mapStateToProps = state => {
-    return { random: state.random, position: state.position };
+    return { random: state.random, position: state.position, isLoading: state.isLoading };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getRandom: () => {
-            dispatch(getRandom());
+        getRandom: position => {
+            dispatch(getRandom(position));
         },
         incrementPosition: () => {
             dispatch(incrementPosition());

@@ -6,7 +6,11 @@
     position: absolute;
     right: 0;
     color: white;
-    font-size: 1.2em;
+    width: 20px;
+    height: 20px;
     background: red;
+    &:hover {
+      transform: scale(1.2) translate(-8%, 8%);
+    }
   }
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Disclaimer from './Disclaimer/Disclaimer';
-import Source from './Source/Source';
 import ImageElement from '../ImageElement/ImageElement';
-import './RandomImage.scss';
 import BottomPanel from './BottomPanel/BottomPanel';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { setPosition } from '../../../Module/actions/position';
+import './RandomImage.scss';
 
 const RandomImage = ({
     position,
@@ -15,6 +16,7 @@ const RandomImage = ({
     decrementPosition,
     setFav,
     deleteFav,
+    isLoading,
 }) => {
     const srcSize = random.length - 1;
     const showBack = position > 0;
@@ -33,14 +35,21 @@ const RandomImage = ({
         else setFav(random[position].src);
     }, [position, setFav, random, deleteFav]);
 
+    const getRandomImage = React.useCallback(() => {
+        if (position !== srcSize) getRandom(srcSize);
+        else getRandom();
+    }, [position, srcSize, getRandom]);
+
     return (
         <div className="random-image-container">
-            <button className="random-image-container__generate-button" onClick={getRandom}>
+            <button className="random-image-container__generate-button" onClick={getRandomImage}>
                 Generate
             </button>
             {position >= 0 && (
                 <React.Fragment>
-                    <ImageElement src={random[position].src} />
+                    <LoadingSpinner isLoading={isLoading}>
+                        <ImageElement src={random[position].src} />
+                    </LoadingSpinner>
                     <BottomPanel
                         back={back}
                         forward={forward}
@@ -49,7 +58,6 @@ const RandomImage = ({
                         showForward={showForward}
                         setFavorite={setFavorite}
                     />
-                    <Source src={random[position].image} />
                 </React.Fragment>
             )}
             <Disclaimer />

@@ -11,16 +11,21 @@ const generateId = (size = 5) => {
     return str;
 };
 
-export function* getRandomSaga() {
+export function* getRandomSaga(action) {
     try {
         let random;
+        yield put({ type: actionTypes.SET_LOADING });
         while (!random) {
             const imageId = generateId();
             random = yield call(Api.fetchGetRandom, imageId);
         }
+        if (action.position);
         yield all([
             put({ type: actionTypes.GET_RANDOM_SUCCEEDED, random }),
-            put({ type: actionTypes.INCREMENT_POSITION }),
+            action.position
+                ? put({ type: actionTypes.SET_POSITION, position: action.position })
+                : put({ type: actionTypes.INCREMENT_POSITION }),
+            put({ type: actionTypes.REMOVE_LOADING }),
         ]);
     } catch (error) {
         yield put({ type: actionTypes.GET_RANDOM_FAILED, error });
@@ -30,8 +35,8 @@ export function* getRandomSaga() {
 export function* getRandomSetFavSaga(action) {
     try {
         const id = yield call(Api.fetchSetFavRandom, action.src);
-        yield put({ type: actionTypes.GET_RANDOM_SET_FAV_SUCCEEDED, id: id, src: action.src });
+        yield put({ type: actionTypes.SET_FAV_RANDOM_SUCCEEDED, id: id, src: action.src });
     } catch (error) {
-        yield put({ type: actionTypes.GET_RANDOM_SET_FAV_FAILED, error });
+        yield put({ type: actionTypes.SET_FAV_RANDOM_FAILED, error });
     }
 }
