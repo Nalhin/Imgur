@@ -10,7 +10,7 @@
     height: 25px;
     background: red;
     &:hover {
-      transform: scale(1.2) translate(-8%, 8%);
+      cursor: pointer;
     }
   }
 }
