@@ -5,7 +5,6 @@ import Disclaimer from './Disclaimer/Disclaimer';
 import ImageElement from '../ImageElement/ImageElement';
 import BottomPanel from './BottomPanel/BottomPanel';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { setPosition } from '../../../Module/actions/position';
 import './RandomImage.scss';
 
 const RandomImage = ({
@@ -36,7 +35,7 @@ const RandomImage = ({
     }, [position, setFav, random, deleteFav]);
 
     const getRandomImage = React.useCallback(() => {
-        if (position !== srcSize) getRandom(srcSize);
+        if (position !== srcSize) getRandom(srcSize + 1);
         else getRandom();
     }, [position, srcSize, getRandom]);
 

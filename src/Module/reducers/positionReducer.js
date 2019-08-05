@@ -7,7 +7,7 @@ const positionReducer = (state = -1, action) => {
         case actionTypes.DECREMENT_POSITION:
             return state - 1;
         case actionTypes.SET_POSITION:
-            return action.position + 1;
+            return action.position;
         default:
             return state;
     }
