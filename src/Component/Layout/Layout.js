@@ -10,7 +10,7 @@ const Layout = () => {
         <div className="layout">
             <Navbar />
             <Route path="/" exact component={RandomImage} />
-            <Route path="/favorites" exact component={Favorites} />
+            <Route path="/favorites" component={Favorites} />
         </div>
     );
 };

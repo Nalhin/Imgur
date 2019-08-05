@@ -4,7 +4,7 @@ import './Navbar.scss';
 
 const Navbar = () => {
     return (
-        <div className="navbar">
+        <nav className="navbar">
             <NavLink
                 to="/"
                 className="navbar__element"
@@ -20,7 +20,7 @@ const Navbar = () => {
             >
                 Favorites
             </NavLink>
-        </div>
+        </nav>
     );
 };
 
