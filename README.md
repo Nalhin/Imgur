@@ -1,6 +1,10 @@
-# Imgur Generator
+# Imgur
 
 A website that allows users to generate random images from imgur and manage favorites.
+
+![main](showcase/main.JPG)
+
+![favourites](showcase/favourites.JPG)
 
 ## Requirements
 
@@ -28,7 +32,7 @@ npm run start
 
 ## Data
 
-Imgur Generator generates 5 character hashes and keeps sending requests until a valid image is found. Subsequently, the image is displayed to the user. This app could be used to generate 6 or 7 character hashes, however with so many dead links it would take forever to find a valid one.
+Imgur App generates 5 character hashes and keeps sending requests until a valid image is found. Subsequently, the image is displayed to the user. This app could be used to generate 6 or 7 character hashes, however with so many dead links it would take forever to find a valid one.
 
 ## Stack
 
@@ -36,13 +40,13 @@ React, React Router, Redux, Redux Saga, Sass, Firebase.
 
 ## What I learned
 
-#### React Router basics.
-#### Firebase.
-#### Redux.
-#### Redux Saga.
-#### Asynchronous requests with Redux.
-#### Scss.
-#### BEM.
+- React Router basics.
+- Firebase.
+- Redux.
+- Redux Saga.
+- Asynchronous requests with Redux.
+- Scss.
+- BEM.
 
 
 ## License
