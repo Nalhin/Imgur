@@ -1,11 +1,9 @@
 {
   "version": 2,
   "name": "imgur",
-  "static": {
-    "rewrites": [
-      { "source": "**", "destination": "/index.html" }
-    ]
-  },
+  "src": "^/(.*)",
+  "surge": true,
+  "dest": "/index.html",
   "builds": [
     {
       "src": "package.json",
